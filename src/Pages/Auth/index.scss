@@ -1,0 +1,50 @@
+.login {
+    .form-login {
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid gray;
+        border-radius: 15px;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background-color: rgb(231, 167, 124);
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+        }
+        form {
+            font-size: 1.6rem;
+            padding: 20px;
+            .form-container {
+                input[type="email"],
+                input[type="password"] {
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    font-size: 1.2rem;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                }
+            }
+            .btn-form-login {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+
+                color: white;
+                background-color: green;
+            }
+        }
+        p {
+            display: inline-block;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+        }
+    }
+}
