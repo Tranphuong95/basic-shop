@@ -5,7 +5,7 @@ const getAll = () => {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(products)
-        }, 500);
+        }, 0);
     })
 }
 
