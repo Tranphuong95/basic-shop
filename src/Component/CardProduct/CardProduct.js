@@ -28,26 +28,26 @@ const CardProduct = (props) => {
         dispatch(props.fetchProducts)
     }, [dispatch]);
 
-    useEffect(() => {
-        const getProduct = async () => {
+    // useEffect(() => {
+    //     const getProduct = async () => {
 
-            try {
-                const params = {
-                    // _page: 1,
-                    // _limit: 10
-                    salePrice: 95000
-                }
-                const response = await productApi.getAll(params);
-                // const response = await productApi.get(1);
-                console.log(response)
-            } catch (error) {
-                console.log('Failer request call api product:', error)
-            }
-        };
-        getProduct()
-    }, []);
+    //         try {
+    //             const params = {
+    //                 // _page: 1,
+    //                 // _limit: 10
+    //                 salePrice: 95000
+    //             }
+    //             const response = await productApi.getAll(params);
+    //             // const response = await productApi.get(1);
+    //             console.log(response)
+    //         } catch (error) {
+    //             console.log('Failer request call api product:', error)
+    //         }
+    //     };
+    //     getProduct()
+    // }, []);
     const { products } = props;
-    console.log('Process', process)
+    // console.log('Process', process)
     const onAddToCart = (product) => {
         props.addToCart(product, 1);
         props.onOpenModal();
