@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { products } from './../api/productdata';
 
 const getAll = () => {
@@ -10,5 +10,5 @@ const getAll = () => {
 }
 
 export default {
-    getAll,
+    getAll
 }
