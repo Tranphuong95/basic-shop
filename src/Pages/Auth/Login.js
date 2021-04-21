@@ -16,18 +16,19 @@ firebase.initializeApp(config);
 const uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
+    // signInFlow: 'redirect',
+    // signInSuccessUrl: "/",
     // We will display Google and Facebook as auth providers.
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID
+        // firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
     callbacks: {
         // Avoid redirects after sign-in.
         // signInSuccessWithAuthResult: () => false,
     },
 };
-
-function Login(props) {
+export const IsLogin = () => {
     const [isSignedIn, setIsSignedIn] = useState(false);
     useEffect(() => {
         const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
@@ -42,6 +43,25 @@ function Login(props) {
 
         return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
     }, []);
+    return isSignedIn
+}
+
+const Login = (props) => {
+    // const [isSignedIn, setIsSignedIn] = useState(false);
+    // useEffect(() => {
+    //     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
+    //         setIsSignedIn(!!user);
+    //         if (!user) {
+    //             console.log('Bạn chưa đăng nhập')
+    //             return
+    //         }
+    //         const token = await user.getIdToken();
+    //         console.log(token)
+    //     });
+
+    //     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+    // }, []);
+    const isSignedIn = IsLogin();
     console.log(isSignedIn)
     // if (!isSignedIn) {
     //     return (
@@ -74,13 +94,10 @@ function Login(props) {
         );
     }
     return (
-        // <Redirect path='/' />
         <div>
-            <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-            <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
+            <Redirect to='/' />
         </div>
     )
-
 }
 
 export default Login;

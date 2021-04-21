@@ -1,0 +1,50 @@
+.page-error-container {
+    background: linear-gradient(45deg, #8500ff, #5acaff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content {
+        top: 10%;
+        left: 10%;
+        bottom: 10%;
+        right: 10%;
+
+        width: 80%;
+        height: auto;
+        border-radius: 10px;
+        background: #151729;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+
+        text-align: center;
+        h2 {
+            font-size: 18vw;
+            color: #fff;
+            line-height: 1em;
+        }
+        h4 {
+            position: relative;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #111;
+            background: #fff;
+            font-weight: 300;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        p {
+            color: #fff;
+            font-size: 1.2em;
+        }
+        a {
+            display: inline-block;
+            position: relative;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 25px;
+            border-radius: 30px;
+            background-color: #ff0562;
+            margin: 25px 0 30px 0;
+        }
+    }
+}

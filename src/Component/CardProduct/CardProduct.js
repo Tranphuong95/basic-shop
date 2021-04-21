@@ -33,9 +33,9 @@ const CardProduct = (props) => {
 
             try {
                 const params = {
-                    // _page: 1,
-                    // _limit: 10
-                    salePrice: 95000
+                    _page: 1,
+                    _limit: 10
+                    // salePrice: 95000
                 }
                 const response = await productApi.getAll(params);
                 // const response = await productApi.get(1);
@@ -45,13 +45,15 @@ const CardProduct = (props) => {
             }
         };
         getProduct()
+        // return () => { getProduct() } // cleanup function
     }, []);
+
     const { products } = props;
     // console.log('Process', process)
     const onAddToCart = (product) => {
         props.addToCart(product, 1);
         props.onOpenModal();
-        props.changeMessage(Message.MSG_ADD_TO_CART_SUCCESS)
+        props.changeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
     }
     return (
         <div className="product-grid">

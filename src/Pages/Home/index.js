@@ -2,6 +2,7 @@ import React from 'react';
 import CardProduct from './../../Component/CardProduct/CardProduct';
 
 const Home = (props) => {
+    document.title = "Shop Basic"
     const onOpenModal = () => {
         document.getElementById('checkout-cart').style.display = "block";
     }
