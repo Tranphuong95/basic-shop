@@ -1,20 +1,27 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Switch,
-    Route
+    Route, useLocation
 } from 'react-router-dom';
 import Home from './Pages/Home/index'
 import Login from './Pages/Auth/Login';
 import SignUp from './Pages/Auth/SignUp';
 import Page404 from './Pages/Page404/404';
+import Stream from './Component/Stream';
+import ProductmanageRouter from './Component/ProductManage';
 
 const Routes = (props) => {
+    const location = useLocation();
     return (
         <Switch>
             <Route path='/' exact component={Home} />
+            <Route path='/stream' component={Stream} />
+            <Route path='/product-manage' component={ProductmanageRouter} />
+
             <Route path='/login' component={Login} />
             <Route path='/sign-up' component={SignUp} />
+
             <Route component={Page404} />
         </Switch>
     );

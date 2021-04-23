@@ -11,5 +11,16 @@
                 }
             }
         }
+        .icon-cart-header {
+            cursor: pointer;
+            i {
+                display: block;
+                text-align: center;
+            }
+            .total-cart-header {
+                font-size: 1.2em;
+                color: white;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ import { changeMessage } from './../../actions/message.action';
 import { connect, useDispatch } from 'react-redux';
 import * as Message from './../../constants/Messages';
 import productApi from '../../api/productApi';
+import axios from 'axios';
 
 const CardProduct = (props) => {
     // const [products, setProducts] = useState([]);
@@ -28,25 +29,34 @@ const CardProduct = (props) => {
         dispatch(props.fetchProducts)
     }, [dispatch]);
 
-    useEffect(() => {
-        const getProduct = async () => {
+    // useEffect(() => {
+    // const getProduct = async () => {
 
-            try {
-                const params = {
-                    _page: 1,
-                    _limit: 10
-                    // salePrice: 95000
-                }
-                const response = await productApi.getAll(params);
-                // const response = await productApi.get(1);
-                console.log(response)
-            } catch (error) {
-                console.log('Failer request call api product:', error)
-            }
-        };
-        getProduct()
-        // return () => { getProduct() } // cleanup function
-    }, []);
+    //     try {
+    //         const params = {
+    //             _page: 1,
+    //             _limit: 10
+    //             // salePrice: 95000
+    //         }
+    //         const response = await productApi.getAll(params);
+    //         // const response = await productApi.get(1);
+    //         console.log(response)
+    //     } catch (error) {
+    //         console.log('Failer request call api product:', error)
+    //     }
+    // };
+    // getProduct()
+    // return () => { getProduct() } // cleanup function
+
+    // axios.get('https://js-post-api.herokuapp.com/api/products',
+    //     {
+    //         params: {
+    //             _page: 1,
+    //             _limit: 10
+    //         }
+    //     }
+    // ).then(res => console.log(res.data.data))
+    // }, []);
 
     const { products } = props;
     // console.log('Process', process)

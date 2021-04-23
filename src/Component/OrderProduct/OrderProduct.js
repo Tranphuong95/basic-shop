@@ -62,35 +62,33 @@ function OrderProduct(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {CartItems && CartItems.length > 0 ? CartItems.map(CartItem => {
-                            return (
-                                <tr key={CartItem.product.id}>
-                                    <td>
-                                        <div className="cart-product-infor">
-                                            <div className="cart-image"><img src={CartItem.product.image} alt='khong the hien thi hinh anh' /></div>
-                                            <div className="cart-product-text">
-                                                <div className="product-name">{CartItem.product.name}</div>
-                                                <br />
-                                                <div className="delete-product" onClick={() => onRemoveFromCart(CartItem.product)}><i className="fas fa-trash-alt"></i> Xóa sản phẩm</div>
-                                            </div>
+                        {CartItems && CartItems.length > 0 ? CartItems.map(CartItem => (
+                            <tr key={CartItem.product.id}>
+                                <td>
+                                    <div className="cart-product-infor">
+                                        <div className="cart-image"><img src={CartItem.product.image} alt='khong the hien thi hinh anh' /></div>
+                                        <div className="cart-product-text">
+                                            <div className="product-name">{CartItem.product.name}</div>
+                                            <br />
+                                            <div className="delete-product" onClick={() => onRemoveFromCart(CartItem.product)}><i className="fas fa-trash-alt"></i> Xóa sản phẩm</div>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <div className="cart-product-price">{CartItem.product.price.salePrice} vnđ</div>
-                                    </td>
-                                    <td>
-                                        <div className="cart-product-count">
-                                            <button disabled={CartItem.count <= 1 && true} className="count-down" onClick={() => { onUpdateToCart(CartItem.product, -1) }}>-</button>
-                                            <div>{CartItem.count}</div>
-                                            <button className="count-up" onClick={() => { onUpdateToCart(CartItem.product, 1) }}>+</button>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="cart-price-total">{CartItem.product.price.salePrice * CartItem.count} vnđ</div>
-                                    </td>
-                                </tr>
-                            )
-                        }) : null}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="cart-product-price">{CartItem.product.price.salePrice} vnđ</div>
+                                </td>
+                                <td>
+                                    <div className="cart-product-count">
+                                        <button disabled={CartItem.count <= 1 && true} className="count-down" onClick={() => { onUpdateToCart(CartItem.product, -1) }}>-</button>
+                                        <div>{CartItem.count}</div>
+                                        <button className="count-up" onClick={() => { onUpdateToCart(CartItem.product, 1) }}>+</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="cart-price-total">{CartItem.product.price.salePrice * CartItem.count} vnđ</div>
+                                </td>
+                            </tr>
+                        )) : (<tr></tr>)}
                     </tbody>
                 </table>
                 <div className="modal-footer">

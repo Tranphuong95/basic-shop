@@ -15,9 +15,9 @@ firebase.initializeApp(config);
 
 const uiConfig = {
     // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
-    // signInFlow: 'redirect',
-    // signInSuccessUrl: "/",
+    // signInFlow: 'popup',
+    signInFlow: 'redirect',
+    signInSuccessUrl: "/",
     // We will display Google and Facebook as auth providers.
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -47,6 +47,7 @@ export const IsLogin = () => {
 }
 
 const Login = (props) => {
+    document.title = "Trang đăng nhập"
     // const [isSignedIn, setIsSignedIn] = useState(false);
     // useEffect(() => {
     //     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
@@ -95,7 +96,7 @@ const Login = (props) => {
     }
     return (
         <div>
-            <Redirect to='/' />
+
         </div>
     )
 }

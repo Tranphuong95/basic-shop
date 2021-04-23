@@ -1,0 +1,141 @@
+//scss productManage in bellow
+.product-manage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content {
+        top: 10%;
+        left: 10%;
+        bottom: 10%;
+        right: 10%;
+
+        // width: 80%;
+        height: auto;
+        // border-radius: 5px;
+        background: rgb(228, 225, 225);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+
+        h2 {
+            margin: 40px;
+            font-size: 2em;
+            text-align: center;
+        }
+        .add-product {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            a {
+                font-size: 1.6em;
+                margin-right: 20px;
+                padding: 10px 15px;
+                border-radius: 5px;
+                background-color: rgb(68, 68, 241);
+                color: white;
+            }
+        }
+        table,
+        th,
+        td {
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-collapse: collapse;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        table {
+            position: relative;
+            margin: 20px auto;
+            tbody {
+                tr {
+                    td {
+                        .product-edit {
+                            display: flex;
+                            .view,
+                            .edit,
+                            .delete {
+                                margin: 0 10px;
+                                padding: 5px 20px;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                a {
+                                    color: white;
+                                }
+                            }
+                            .view {
+                                background-color: green;
+                            }
+                            .edit {
+                                background-color: rgb(15, 175, 228);
+                            }
+                            .delete {
+                                background-color: red;
+                            }
+                        }
+                    }
+                    .image {
+                        width: 200px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .price {
+                        width: 250px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//scss productManageUpdate in bellow
+.product-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-content {
+        position: relative;
+        top: 10vh;
+        h2 {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        form {
+            width: 60vw;
+            label {
+                font-size: 1.6em;
+            }
+            input {
+                display: inline-block;
+                position: relative;
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+
+                font-size: 1.4em;
+            }
+            .update-btn {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                button {
+                    margin: 20px 20px 0 0;
+                    padding: 10px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 1.6em;
+
+                    color: white;
+                    cursor: pointer;
+                }
+                .btn-back {
+                    background-color: #ff0000;
+                }
+                .btn-save {
+                    background-color: green;
+                }
+            }
+        }
+    }
+}

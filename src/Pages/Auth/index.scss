@@ -48,3 +48,38 @@
         }
     }
 }
+//scss cho trang đăng xuất
+.sign-up {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .sign-up-success {
+        right: 20%;
+        left: 20%;
+
+        width: auto;
+        background: orange;
+        padding: 20px;
+        text-align: center;
+    }
+    h2 {
+        position: relative;
+        font-size: 2em;
+    }
+    p {
+        position: relative;
+        font-size: 1.6em;
+    }
+    a {
+        display: inline-block;
+        position: relative;
+        font-size: 1.6em;
+        padding: 10px 25px;
+        margin: 20px;
+
+        border-radius: 20px;
+        background-color: green;
+        color: white;
+    }
+}

@@ -25,7 +25,7 @@ const getFireBaseToken = async () => {
     })
 }
 const axiosClient = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL_LOCAL,
     header: {
         'content-type': 'application/json',
     },
@@ -41,7 +41,9 @@ axiosClient.interceptors.request.use(async (config) => {
     // }
 
     const token = await getFireBaseToken();
+
     console.log('Authorization:', token)
+
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }

@@ -1,4 +1,6 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
+import axiosLocal from "./axiosLocal";
 
 const productApi = {
 
@@ -16,6 +18,13 @@ const productApi = {
     get: (id) => {
         const url = `/products/${id}`;
         return axiosClient.get(url)
+    },
+
+    getAllLocal: (params) => {
+        const url = '/products';
+        return axiosLocal.get(url, {
+            params
+        })
     }
 }
 
