@@ -1,0 +1,13 @@
+.pagination-shopbasic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    button {
+        font-size: 1.4em;
+        padding: 10px 15px;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+}

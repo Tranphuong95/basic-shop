@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import './index.scss'
+import React from 'react';
 import PropTypes from 'prop-types';
 
 Pagination.propTypes = {
@@ -22,7 +23,7 @@ function Pagination(props) {
     }
     console.log(pagination)
     return (
-        <div>
+        <div className="pagination-shopbasic">
             <button
                 disabled={_page <= 1 && true}
                 onClick={() => handlePageChange(_page - 1)}

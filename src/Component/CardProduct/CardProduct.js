@@ -31,7 +31,7 @@ const CardProduct = (props) => {
     //     _totalItems: 9
     // });
     const [filterPage, setFilterPage] = useState({
-        _limit: 2,
+        _limit: 3,
         _page: 1
     })
     const onHandlePageChange = (newPage) => {
@@ -42,7 +42,7 @@ const CardProduct = (props) => {
         })
     }
     // setpagination(props.productsPagination.pagination)
-    const pagination = props.productsPagination.pagination;
+
     const dispatch = useDispatch();
     // useEffect(() => {
     //     // const paramsSTring = queryString.stringify(filterPage)
@@ -84,6 +84,11 @@ const CardProduct = (props) => {
     // }, []);
 
     const products = props.productsPagination.data;
+    const pagination = props.productsPagination.pagination || {
+        _limit: 3,
+        _page: 1,
+        _totalItems: 3
+    };
 
     console.log(props.productsPagination)
     const onAddToCart = (product) => {
@@ -93,32 +98,35 @@ const CardProduct = (props) => {
     }
 
     return (
-        <div className="product-grid">
-            {products && products.length > 0 ? products.map(item => (
-                <div className="card-product" key={item.id}>
-                    <div className="card-image">
-                        <img src={item.image} alt="ao short nam" />
-                    </div>
-                    <div className="title"><h2>{item.name}</h2></div>
-                    <br />
-                    <div className="card-main">
-                        <div className="price">
-                            <div className="sale-price">{item.price.salePrice.toLocaleString()} vnd</div>
-                            <div className="old-price">{item.price.oldPrice.toLocaleString()} vnd</div>
-                            <div>-40%</div>
+        <div>
+            <div className="product-grid">
+                {products && products.length > 0 ? products.map(item => (
+                    <div className="card-product" key={item.id}>
+                        <div className="card-image">
+                            <img src={item.image} alt="ao short nam" />
+                        </div>
+                        <div className="title"><h2>{item.name}</h2></div>
+                        <br />
+                        <div className="card-main">
+                            <div className="price">
+                                <div className="sale-price">{item.price.salePrice.toLocaleString()} vnd</div>
+                                <div className="old-price">{item.price.oldPrice.toLocaleString()} vnd</div>
+                                <div>-40%</div>
+                            </div>
+                        </div>
+                        <br />
+                        <div className="card-footer">
+                            <div className="card-more-infor">TÌM HIỂU THÊM</div>
+                            <div className="cart" onClick={() => onAddToCart(item)}>
+                                <i className="fas fa-cart-arrow-down"></i>
+                            </div>
                         </div>
                     </div>
-                    <br />
-                    <div className="card-footer">
-                        <div className="card-more-infor">TÌM HIỂU THÊM</div>
-                        <div className="cart" onClick={() => onAddToCart(item)}>
-                            <i className="fas fa-cart-arrow-down"></i>
-                        </div>
-                    </div>
-                </div>
-            )) : ('')}
+                )) : ('')}
+            </div>
             <Pagination pagination={pagination} onPageChange={onHandlePageChange} />
         </div>
+
     );
 };
 const mapStateToProps = (state) => {
