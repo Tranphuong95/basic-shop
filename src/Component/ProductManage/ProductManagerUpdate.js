@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 ProductManagerUpdate.propTypes = {
     product: PropTypes.object,
@@ -14,7 +15,8 @@ ProductManagerUpdate.defaultProps = {
 }
 
 function ProductManagerUpdate(props) {
-    const [isNew] = useState(!props.match.params || !props.match.params.id)
+    const [isNew] = useState(!props.match.params || !props.match.params.id);
+    const [isSuccess, setIsuccess] = useState(false);
     const [price, setPrice] = useState({
         oldPrice: 0,
         salePrice: 0,
@@ -76,6 +78,11 @@ function ProductManagerUpdate(props) {
                 },
                 inventory: Number(product.inventory)
             })
+                .then(res => {
+                    if (res.status === 201) {
+                        setIsuccess(true)
+                    }
+                })
         }
         else axios.patch(`https://first-json-server-demo.herokuapp.com/products/${props.match.params.id}`, { // put or patch?
             // id: product.id,
@@ -88,7 +95,16 @@ function ProductManagerUpdate(props) {
                 percentSale: showPercentSale()
             },
             inventory: Number(product.inventory)
+        }).then(res => {
+            if (res.status === 200) {
+                setIsuccess(true)
+            }
         })
+
+    }
+
+    if (isSuccess === true) {
+        return <Redirect to='/product-manage' />
     }
     console.log(product)
     console.log(!isNew)

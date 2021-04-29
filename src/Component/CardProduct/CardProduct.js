@@ -76,8 +76,8 @@ const CardProduct = (props) => {
                     <br />
                     <div className="card-main">
                         <div className="price">
-                            <div className="sale-price">{item.price.salePrice} vnd</div>
-                            <div className="old-price">{item.price.oldPrice} vnd</div>
+                            <div className="sale-price">{item.price.salePrice.toLocaleString()} vnd</div>
+                            <div className="old-price">{item.price.oldPrice.toLocaleString()} vnd</div>
                             <div>-40%</div>
                         </div>
                     </div>

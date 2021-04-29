@@ -50,7 +50,7 @@ function OrderProduct(props) {
             <div className="open-modal">
                 <div className="modal-header">
                     <h1>Giỏ hàng của bạn ({totalCount()} sản phẩm)</h1>
-                    <h1 className="total-price">Tổng giá: {totalPrice()} vnđ</h1>
+                    <h1 className="total-price">Tổng giá: {totalPrice().toLocaleString()} vnđ</h1>
                 </div>
                 <table>
                     <thead>
@@ -75,7 +75,7 @@ function OrderProduct(props) {
                                     </div>
                                 </td>
                                 <td>
-                                    <div className="cart-product-price">{CartItem.product.price.salePrice} vnđ</div>
+                                    <div className="cart-product-price">{CartItem.product.price.salePrice.toLocaleString()} vnđ</div>
                                 </td>
                                 <td>
                                     <div className="cart-product-count">
@@ -85,7 +85,7 @@ function OrderProduct(props) {
                                     </div>
                                 </td>
                                 <td>
-                                    <div className="cart-price-total">{CartItem.product.price.salePrice * CartItem.count} vnđ</div>
+                                    <div className="cart-price-total">{(CartItem.product.price.salePrice * CartItem.count).toLocaleString()} vnđ</div>
                                 </td>
                             </tr>
                         )) : (<tr></tr>)}
