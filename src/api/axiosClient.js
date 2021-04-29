@@ -25,7 +25,7 @@ const getFireBaseToken = async () => {
     })
 }
 const axiosClient = axios.create({
-    baseURL: process.env.REACT_APP_API_URL_LOCAL,
+    baseURL: process.env.REACT_APP_API_URL_HEROKU,
     header: {
         'content-type': 'application/json',
     },

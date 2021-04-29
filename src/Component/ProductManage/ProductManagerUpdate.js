@@ -30,7 +30,7 @@ function ProductManagerUpdate(props) {
 
     useEffect(() => {
         if (!isNew) {
-            axios.get(`http://localhost:4001/products/${props.match.params.id}`, {
+            axios.get(`https://first-json-server-demo.herokuapp.com/products/${props.match.params.id}`, {
                 // params: { id: props.match.params.id }
             }).then(res => { setProduct(res.data); setPrice(res.data.price) })
         }
@@ -64,7 +64,7 @@ function ProductManagerUpdate(props) {
     const onSubmit = (event) => {
         event.preventDefault()
         if (isNew) {
-            axios.post('http://localhost:4001/products', {
+            axios.post('https://first-json-server-demo.herokuapp.com/products', {
                 id: product.id,
                 name: product.name,
                 image: product.image,
@@ -77,8 +77,8 @@ function ProductManagerUpdate(props) {
                 inventory: Number(product.inventory)
             })
         }
-        else axios.put(`http://localhost:4001/products/${props.match.params.id}`, {
-            id: product.id,
+        else axios.patch(`https://first-json-server-demo.herokuapp.com/products/${props.match.params.id}`, { // put or patch?
+            // id: product.id,
             name: product.name,
             image: product.image,
             description: product.description,
