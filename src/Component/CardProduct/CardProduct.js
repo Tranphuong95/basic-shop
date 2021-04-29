@@ -8,6 +8,8 @@ import { connect, useDispatch } from 'react-redux';
 import * as Message from './../../constants/Messages';
 import productApi from '../../api/productApi';
 import axios from 'axios';
+import queryString from 'query-string'
+import Pagination from '../Pagination/Pagination';
 
 const CardProduct = (props) => {
     // const [products, setProducts] = useState([]);
@@ -23,11 +25,34 @@ const CardProduct = (props) => {
     //     }
     //     return main()
     // }, []);
-
+    // const [pagination, setpagination] = useState({
+    //     _limit: 2,
+    //     _page: 2,
+    //     _totalItems: 9
+    // });
+    const [filterPage, setFilterPage] = useState({
+        _limit: 2,
+        _page: 1
+    })
+    const onHandlePageChange = (newPage) => {
+        console.log('Page', filterPage)
+        setFilterPage({
+            ...filterPage,
+            _page: newPage
+        })
+    }
+    // setpagination(props.productsPagination.pagination)
+    const pagination = props.productsPagination.pagination;
     const dispatch = useDispatch();
+    // useEffect(() => {
+    //     // const paramsSTring = queryString.stringify(filterPage)
+    //     dispatch(() => props.fetchProducts(filterPage))
+    // }, [dispatch]);
+
     useEffect(() => {
-        dispatch(props.fetchProducts)
-    }, [dispatch]);
+        // const paramsSTring = queryString.stringify(filterPage)
+        dispatch(() => props.fetchProducts(filterPage))
+    }, [filterPage]);
 
     // useEffect(() => {
     // const getProduct = async () => {
@@ -58,13 +83,15 @@ const CardProduct = (props) => {
     // ).then(res => console.log(res.data.data))
     // }, []);
 
-    const { products } = props;
-    // console.log('Process', process)
+    const products = props.productsPagination.data;
+
+    console.log(props.productsPagination)
     const onAddToCart = (product) => {
         props.addToCart(product, 1);
         props.onOpenModal();
         props.changeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
     }
+
     return (
         <div className="product-grid">
             {products && products.length > 0 ? products.map(item => (
@@ -90,7 +117,7 @@ const CardProduct = (props) => {
                     </div>
                 </div>
             )) : ('')}
-
+            <Pagination pagination={pagination} onPageChange={onHandlePageChange} />
         </div>
     );
 };
@@ -98,7 +125,7 @@ const mapStateToProps = (state) => {
     console.log(state)
     return {
         cartItems: state.cartReducers.cartItems,
-        products: state.productReducers.products
+        productsPagination: state.productReducers.products
     }
 }
 const mapDispatchToProps = {
