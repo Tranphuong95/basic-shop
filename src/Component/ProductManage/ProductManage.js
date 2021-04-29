@@ -5,6 +5,7 @@ import { changeMessage } from './../../actions/message.action';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { createLogger } from 'redux-logger';
 
 const ProductManage = (props) => {
     const dispatch = useDispatch();
@@ -14,8 +15,9 @@ const ProductManage = (props) => {
     }, [dispatch]);
 
     const { products } = props;
-    console.log(products);
+    console.log(products[9]);
     console.log(props.match)
+
     return (
         <div className="product-manage">
             <div className="content">
@@ -36,35 +38,38 @@ const ProductManage = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products && products.length > 0 ? products.map(product => (
-                            <tr key={product.id}>
-                                <td>{product.id}</td>
-                                <td>{product.name}</td>
-                                <td className='image'>
-                                    <img src={product.image} alt='product' />
-                                </td>
-                                <td className='price'>
-                                    <div>
-                                        <div>OldPrice: {product.price.oldPrice} vnđ</div>
-                                        <div>SalePrice: {product.price.salePrice} vnđ</div>
-                                        <div>PercentPrice: {product.price.percentSale}%</div>
-                                    </div>
-                                </td>
-                                <td>{product.description}</td>
-                                <td>{product.inventory}</td>
-                                <td>
-                                    <div className='product-edit'>
-                                        <div className='view'>
-                                            <Link to={`${props.match.url}/${product.id}`}>Xem</Link>
+                        {products && products.length > 0 ? products.map(product => {
+                            console.log(typeof product.price.oldPrice)
+                            return (
+                                <tr key={product.id}>
+                                    <td>{product.id}</td>
+                                    <td>{product.name}</td>
+                                    <td className='image'>
+                                        <img src={product.image} alt='product' />
+                                    </td>
+                                    <td className='price'>
+                                        <div>
+                                            <div>OldPrice: {product.price.oldPrice.toLocaleString()} vnđ</div>
+                                            <div>SalePrice: {product.price.salePrice.toLocaleString()} vnđ</div>
+                                            <div>PercentPrice: {product.price.percentSale.toLocaleString()}%</div>
                                         </div>
-                                        <div className='edit'>
-                                            <Link to={`${props.match.url}/${product.id}/update`}>Sửa</Link></div>
-                                        <div className='delete'>
-                                            <Link to={`${props.match.url}/${product.id}/delete`}>Xóa</Link></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        )) : (null)}
+                                    </td>
+                                    <td>{product.description}</td>
+                                    <td>{product.inventory}</td>
+                                    <td>
+                                        <div className='product-edit'>
+                                            <div className='view'>
+                                                <Link to={`${props.match.url}/${product.id}`}>Xem</Link>
+                                            </div>
+                                            <div className='edit'>
+                                                <Link to={`${props.match.url}/${product.id}/update`}>Sửa</Link></div>
+                                            <div className='delete'>
+                                                <Link to={`${props.match.url}/${product.id}/delete`}>Xóa</Link></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )
+                        }) : (null)}
                     </tbody>
                 </table>
             </div>
