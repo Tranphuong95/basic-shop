@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import { Redirect } from 'react-router';
+import axios from 'axios';
 
 // Configure Firebase.
 const config = {
@@ -30,6 +31,7 @@ const uiConfig = {
 };
 export const IsLogin = () => {
     const [isSignedIn, setIsSignedIn] = useState(false);
+
     useEffect(() => {
         const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
             setIsSignedIn(!!user);
@@ -47,7 +49,15 @@ export const IsLogin = () => {
 }
 
 const Login = (props) => {
-    document.title = "Trang đăng nhập"
+    document.title = "Trang đăng nhập";
+    console.log(firebase.auth())
+
+    const [user, setUser] = useState(null);
+    const [accessToken, setAccessToken] = useState(null);
+    const [rememberStatus, setRemeberStatus] = useState(false);
+    const [resRemember, setResRemember] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [isLoginSuccess, setIsLoginSuccess] = useState(false);
     // const [isSignedIn, setIsSignedIn] = useState(false);
     // useEffect(() => {
     //     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
@@ -73,17 +83,56 @@ const Login = (props) => {
     //         </div>
     //     );
     // }
+    const onChangeStatus = () => {
+        setRemeberStatus(!rememberStatus)
+    }
+    console.log('status', rememberStatus)
+    const onHandleChange = (event) => {
+        setUser({
+            ...user,
+            [event.target.name]: event.target.value,
+        })
+    }
+    console.log("user", user)
+    const onFormSubmit = (event) => {
+        event.preventDefault()
+        axios({
+            method: 'post',
+            url: 'http://localhost:4001/login',
+            data: { ...user, rememberStatus: rememberStatus }
+        }).then(res => { setAccessToken(res.data.access_token); setResRemember(res.data.rememberStatus); setMessage(res.data.message); setIsLoginSuccess(res.data.isLoginSuccess) })
+    }
+
+    if (accessToken) {
+        if (resRemember === true) {
+            console.log('status la true')
+            localStorage.setItem('access_token', accessToken)
+        }
+        else if (resRemember === false) {
+            console.log('status la false')
+            sessionStorage.setItem('access_token', accessToken)
+        }
+    }
+
+    console.log(isLoginSuccess)
+    if (isLoginSuccess === true) {
+        return (
+            <h3>Login successfully</h3>
+        )
+    }
     if (!isSignedIn) {
         return (
             <div className="login">
                 <div className="form-login">
                     <h2>Login Form</h2>
-                    <form>
+                    <form onSubmit={onFormSubmit}>
                         <div className="form-container">
                             <label><strong>Email</strong></label>
-                            <input type='email' placeholder="Điền email của bạn" required />
+                            <input type='email' name='email' placeholder="Điền email của bạn" onChange={onHandleChange} required />
                             <label><strong>Password</strong></label>
-                            <input type='password' placeholder="Điền mật khẩu của bạn" required />
+                            <input type='password' name='password' placeholder="Điền mật khẩu của bạn" onChange={onHandleChange} required />
+                            <label>Remember</label>
+                            <input type='checkbox' name='rememberPass' onChange={onChangeStatus} checked={rememberStatus} />
                         </div>
                         <button type="submit" className="btn-form-login">Đăng nhập</button>
                     </form>
@@ -102,3 +151,4 @@ const Login = (props) => {
 }
 
 export default Login;
+

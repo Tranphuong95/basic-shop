@@ -4,7 +4,8 @@ import queryString from 'query-string';
 const axiosLocal = axios.create({
     baseURL: process.env.REACT_APP_API_URL_LOCAL,
     headers: {
-        'content-type': 'aplication/json'
+        'content-type': 'aplication/json',
+        authorization: `Bearer ${localStorage.getItem('access_token') || sessionStorage.getItem('access_token')}`
     },
     paramsSerializer: params => queryString.stringify(params)
 })

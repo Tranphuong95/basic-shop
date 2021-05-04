@@ -16,14 +16,13 @@ const CartReducers = (state = initialState, action) => {
         case Types.UPDATE_TO_CART:
         case Types.RECEIVE_PRODUCTS:
         case Types.REMOVE_FROM_CART:
-        case Types.DELETE_IN_CART:
             return {
                 cartItems: action.payload.cartItems
             };
-        // case Types.DELETE_IN_CART:
-        //     return {
-        //         cartItems: [],
-        //     };
+        case Types.DELETE_IN_CART:
+            return {
+                cartItems: [],
+            };
         default:
             return state
     }

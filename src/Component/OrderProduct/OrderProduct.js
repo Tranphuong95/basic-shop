@@ -1,10 +1,11 @@
-import './OrderProduct.scss'
+import './index.scss'
 import React, { useEffect, useState } from 'react';
 import { products } from '../../api/productdata';
 import { removeFromCart, updateInCart } from './../../actions/cart.action';
 import { connect } from 'react-redux';
 import { changeMessage } from './../../actions/message.action';
 import * as Message from './../../constants/Messages';
+import { Link } from 'react-router-dom';
 
 function OrderProduct(props) {
     const [CartItems, setCartItems] = useState([])
@@ -93,7 +94,8 @@ function OrderProduct(props) {
                 </table>
                 <div className="modal-footer">
                     <div className="cart-leave" onClick={onCloseModal}><i className="fas fa-arrow-left"></i> Tiếp tục mua hàng</div>
-                    <div className="cart-next">Tiến hành thanh toán <i className="fas fa-arrow-right"></i></div>
+                    {/* <div className="cart-next">Tiến hành thanh toán <i className="fas fa-arrow-right"></i></div> */}
+                    <Link to='/checkout-cart' onClick={onCloseModal}>Tiến hành thanh toán <i className="fas fa-arrow-right"></i></Link>
                 </div>
             </div>
         </div>
