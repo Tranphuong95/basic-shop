@@ -53,6 +53,7 @@ const Header = (props) => {
                         <ul>
                             <MenuLink label="Home" to="/" activeOnlyWhenExact={true}></MenuLink>
                             <MenuLink label="Stream" to="/stream" activeOnlyWhenExact={false}></MenuLink>
+                            <MenuLink label="Lodash" to="/lodash" activeOnlyWhenExact={false}></MenuLink>
                             <MenuLink label="Product Manage" to="/product-manage" activeOnlyWhenExact={false}></MenuLink>
                             {isSignedIn ? <MenuLink label={'Sign up'} to="/sign-up" activeOnlyWhenExact={false}></MenuLink> : <MenuLink label={'Login'} to="/login" activeOnlyWhenExact={false}></MenuLink>}
                             {/* <MenuLink label={isSignedIn ? 'Sign out' : 'Login'} to={isSignedIn ? '/sign-up' : '/login'} activeOnlyWhenExact={false}></MenuLink> */}
