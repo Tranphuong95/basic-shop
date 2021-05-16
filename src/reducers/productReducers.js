@@ -1,5 +1,5 @@
 
-import { FETCH_PRODUCT } from './../constants/ActionTypes';
+import { FETCH_PRODUCT, FETCH_PRODUCT_FAIL, FETCH_PRODUCT_SUCCESS } from './../constants/ActionTypes';
 
 const initialState = {
     products: [],
@@ -19,7 +19,19 @@ const initialState = {
 const ProductReducers = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_PRODUCT:
-            return { ...state, products: action.payload };
+            return { ...state, data: action.payload };
+        case FETCH_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                data: action.payload
+            }
+        }
+        case FETCH_PRODUCT_FAIL: {
+            return {
+                ...state,
+                data: action.payload
+            }
+        }
         default:
             return state
     }

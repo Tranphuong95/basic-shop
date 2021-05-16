@@ -14,14 +14,17 @@ const ProductManage = (props) => {
         dispatch(props.fetchProducts)
     }, [dispatch]);
 
-    const { products } = props;
-    console.log(products[9]);
+    const { data } = props;
+    console.log(data);
+    const products = data && data.data
+    const loading = data && data.loading
     console.log(props.match)
 
     return (
         <div className="product-manage">
             <div className="content">
                 <h2>Chào mừng đến trang quản lý sản phẩm</h2>
+                {loading ? (<h3>...loading</h3>) : ('')}
                 <div className='add-product'>
                     <Link to={`${props.match.url}/new`}>Thêm sản phẩm mới</Link>
                 </div>
@@ -79,7 +82,7 @@ const ProductManage = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.productReducers.products
+        data: state.productReducers.data
     }
 }
 const mapDispatchToProps = {

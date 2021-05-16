@@ -82,15 +82,15 @@ const CardProduct = (props) => {
     //     }
     // ).then(res => console.log(res.data.data))
     // }, []);
-
-    const products = props.productsPagination.data;
-    const pagination = props.productsPagination.pagination || {
+    console.log('props', props)
+    const products = props.productsPagination && props.productsPagination.data && props.productsPagination.data.data;
+    const pagination = props.productsPagination && props.productsPagination.data ? props.productsPagination.data.pagination : {
         _limit: 3,
         _page: 1,
         _totalItems: 3
     };
 
-    console.log(props.productsPagination)
+    console.log(products)
     const onAddToCart = (product) => {
         props.addToCart(product, 1);
         props.onOpenModal();
@@ -133,7 +133,7 @@ const mapStateToProps = (state) => {
     console.log(state)
     return {
         cartItems: state.cartReducers.cartItems,
-        productsPagination: state.productReducers.products
+        productsPagination: state.productReducers.data
     }
 }
 const mapDispatchToProps = {
